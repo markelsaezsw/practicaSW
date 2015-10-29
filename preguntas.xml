@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<assessmentItems>
+	<assessmentItem complexity="2" subject="Web">
+		<itemBody>
+			<p>Tag HTML para a&#xF1;adir un formulario</p>
+		</itemBody>
+		<correctResponse>
+			<value>
+				FORM
+			</value>
+		</correctResponse>
+	</assessmentItem>
+		<assessmentItem complexity="4" subject="Internet">
+		<itemBody>
+			<p>Este protocolo acabar&#xE1; funcionando 
+			incluso entre dos latas unidas por un cord&#xF3;n</p>
+		</itemBody>
+		<correctResponse>
+			<value>
+				TCP/IP
+			</value>
+		</correctResponse>
+	</assessmentItem>
+<MiPregunta><Pregunta>Cual es el numero de tests a realizar a lo largo de la asignatura de SW?</Pregunta><Respuesta>3</Respuesta><Dificultad>1</Dificultad><Email>jvadillo001@ikasle.ehu.es</Email></MiPregunta><MiPregunta><Pregunta>Cual es la plataforma de hosting que utilizamos para la asignatura?</Pregunta><Respuesta>Hostinger</Respuesta><Dificultad>1</Dificultad><Email>jvadillo001@ikasle.ehu.es</Email></MiPregunta><MiPregunta><Pregunta>Que herramienta utilizamos para la gestion de mysql?</Pregunta><Respuesta>PhpMyAdmin</Respuesta><Dificultad>1</Dificultad><Email>jvadillo001@ikasle.ehu.es</Email></MiPregunta></assessmentItems>
