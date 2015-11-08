@@ -7,14 +7,17 @@ $xml = new SimpleXMLElement('http://markelsaezsw.esy.es/SistemasWeb/preguntas.xm
     <tr>
       <th>Pregunta</th>
       <th>Dificultad</th>
+	  <th>Tema</th>
     </tr>
   </thead>
   <tbody>
 
-<?php foreach ($xml->MiPregunta as $licenseElement) :?>
+<?php foreach ($xml->assessmentItem as $licenseElement) :?>
     <tr>
-      <td><?php echo $licenseElement->Pregunta; ?></td>
-      <td><?php echo $licenseElement->Dificultad; ?></td>
+      <td><?php echo $licenseElement->itemBody->p; ?></td>
+	  <td><?php echo $licenseElement['complexity']; ?></td>
+	  <td><?php echo $licenseElement['subject']; ?></td>
+    
     </tr>
 <?php endforeach; ?>
   </tbody>
