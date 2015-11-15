@@ -1,6 +1,14 @@
-<form id='registro' name='registro' onSubmit="return vervalores()" method="POST" action="registrar.php"> 
 
+<?php
+?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<form id='registro' name='registro' onSubmit="return vervalores()" method="POST" action="registrar.php"> 
+<head>
 <script>
+
 function vervalores(){
  var sAux="";
  var frm = document.getElementById("registro");
@@ -56,8 +64,10 @@ function vervalores(){
  }
 </script>
 
-
+</head>
   
+  
+ <body>
   Nombre y apellidos (*):<br>
   <input type="text" name="NombreyApellidos">
   <br>
@@ -67,7 +77,7 @@ function vervalores(){
   <br>
 
   Password(*):<br>
-  <input type="password" name="Password">
+  <input type="text" name="Password">
   <br>
 
 Numero de telefono(*):<br>
@@ -91,3 +101,5 @@ Tecnologias y herramientas en las que esta interesado:<br>
   
   <span class="right"><a href="layout.html">Pagina Inicio</a></span>
 </form>
+</body>
+</html>

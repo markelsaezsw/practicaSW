@@ -82,7 +82,7 @@ function modificarpreguntas() {
   <br>
 <br>
   <input type=button value="Insertar Nueva Pregunta" onclick="modificarpreguntas()"> <br>
-   <li><a href="#" onClick="verpreguntas()">Ver Preguntas</a></li>
+   <a href="#" onClick="verpreguntas()">Ver Preguntas</a>
   <span class="right"><a href="layout.html">Pagina Inicio</a></span>
 
 
