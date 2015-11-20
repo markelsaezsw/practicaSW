@@ -4,25 +4,32 @@ session_start();
 $mail = $_SESSION['Email'];
    $profesor = $_SESSION['Profesor'];
        
-        if($profesor != 2) {
-        die("Acceso restringido. Solo los alumnos pueden acceder a esta pagina.");
+        if($profesor != 1) {
+        die("Acceso restringido. Solo los profesores pueden acceder a esta pagina.");
            }
 
-$resultado = $mysqli->query("SELECT * FROM Preguntas WHERE Email = '". $mail . "'");
+
+$resultado = $mysqli->query("SELECT * FROM Preguntas");
 
 echo'<table border = 1> 
 <tr> 
+<th> Numero </th> 
 <th> Tema </th> 
 <th> Pregunta </th>
+<th> Respuesta </th> 
 <th> Complejidad </th>
+<th> Email </th> 
 
 </tr>';
 
 while ($row = $resultado -> fetch_object()){
     echo '<tr>
+    <td>'. $row -> Numero . '</td> 
     <td>'. $row -> Subject . '</td> 
     <td>'. $row -> Pregunta . '</td> 
+    <td>'. $row -> Respuesta . '</td> 
     <td>'. $row -> Complejidad . '</td> 
+    <td>'. $row -> Email . '</td> 
     </tr>';
 }
 

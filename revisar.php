@@ -3,8 +3,8 @@
 	$_usuario = $_SESSION['Email'];
         $profesor = $_SESSION['Profesor'];
        
-        if($profesor != 2) {
-        die("Acceso restringido. Solo los alumnos pueden acceder a esta pagina.");
+        if($profesor != 1) {
+        die("Acceso restringido. Solo los profesores pueden acceder a esta pagina.");
            }
 
 ?>
@@ -39,18 +39,19 @@ XMLHttpRequest1.onreadystatechange = function() {
 
 
 function verpreguntas() {
-  XMLHttpRequest1.open("GET", "preguntasusuario.php");
+  XMLHttpRequest1.open("GET", "preguntasprofesor.php");
   XMLHttpRequest1.send(null);
 }
 
 function modificarpreguntas() {
+  var N = document.getElementById("Numero").value;
   var P = document.getElementById("Pregunta").value;
   var R = document.getElementById("Respuesta").value;
   var S = document.getElementById("Subject").value;
   var C = document.getElementById("Complejidad").value;
-  XMLHttpRequest1.open("POST", "modificarpregunta.php", true);
+  XMLHttpRequest1.open("POST", "cambiarpregunta.php", true);
   XMLHttpRequest1.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-  XMLHttpRequest1.send("Pregunta="+P+"&Respuesta="+R+"&Subject="+S+"&Complejidad="+C);
+  XMLHttpRequest1.send("Numero="+N+"&Pregunta="+P+"&Respuesta="+R+"&Subject="+S+"&Complejidad="+C);
 
   
 }
@@ -68,6 +69,12 @@ function modificarpreguntas() {
 	
 	<div>
 	<form id='registro' name='registro' method="POST" action=""> 
+          <br>
+  Numero de la pregunta a modificar(*):<br>
+  <input type="text" name="Numero" id="Numero">
+  <br>
+
+
 		Texto de pregunta(*):<br>
 	<input type="text" name="Pregunta" id="Pregunta">
   <br>
@@ -83,11 +90,11 @@ function modificarpreguntas() {
    <option value="5">5</option>
 </select>
   <br>
-  Tema:<br>
+  Tema(*):<br>
   <input type="text" name="Subject" id="Subject">
   <br>
 <br>
-  <input type=button value="Insertar Nueva Pregunta" onclick="modificarpreguntas()"> <br>
+  <input type=button value="Modificar Pregunta" onclick="modificarpreguntas()"> <br>
    <a href="#" onClick="verpreguntas()">Ver Preguntas</a>
    <span class="right"><a href="logout.php">Logout</a></span>
   <span class="right"><a href="layout.html">Pagina Inicio</a></span>
@@ -108,4 +115,4 @@ function modificarpreguntas() {
 	 
 </div>
 </body>
-</HTML>																				
+</HTML>			

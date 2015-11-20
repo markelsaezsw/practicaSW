@@ -8,7 +8,7 @@ function vervalores(){
  for (i=0;i<frm.elements.length;i++)
  {
  
-	if(i != 5 && frm.elements[i].value === "")
+	if(i !=6 && frm.elements[i].value === "")
 	{
 		sAux="Error. El campo " + frm.elements[i].name + " no puede estar vacio. \n";
 		b = false;
@@ -20,6 +20,11 @@ function vervalores(){
 		b = false;
 		break;
 		
+              }else if (frm.elements[2].value != frm.elements[3].value) 
+	        {
+	 	sAux="Error. Las contraseñas deben coincidir. \n";
+		b = false;
+		break;
 
 	}else if (!frm.elements[1].value.match(/^[a-zA-Z]+\d{3}@ikasle.ehu(.es|.eus)$/))
 	{
@@ -27,7 +32,7 @@ function vervalores(){
 		b = false;
 		break;
 		
-	}else if (!frm.elements[3].value.match(/^[0-9]{9}$/))
+	}else if (!frm.elements[4].value.match(/^[0-9]{9}$/))
 	{
         	sAux="Error. El numero de telefono debe tener 9 digitos. \n";
 		b = false;
@@ -66,8 +71,12 @@ function vervalores(){
   <input type="text" name="Correo">
   <br>
 
-  Password(*):<br>
+  Contraseña(*):<br>
   <input type="password" name="Password">
+  <br>
+
+  Repite tu contraseña(*):<br>
+  <input type="password" name="Password2">
   <br>
 
 Numero de telefono(*):<br>
@@ -90,4 +99,4 @@ Tecnologias y herramientas en las que esta interesado:<br>
   <input type="submit" value="Submit"> <br>
   
   <span class="right"><a href="layout.html">Pagina Inicio</a></span>
-</form>
+</form>	

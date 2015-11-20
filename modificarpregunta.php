@@ -5,6 +5,12 @@ session_start();
 echo $_SESSION['Email'];
 $out1 = ob_get_contents();
 
+$profesor = $_SESSION['Profesor'];
+       
+        if($profesor != 2) {
+        die("Acceso restringido. Solo los alumnos pueden acceder a esta pagina.");
+           }
+
 $sql = "INSERT INTO `u645169209_quiz`.`Preguntas` (`Pregunta`, `Respuesta`, `Complejidad`, `Email`,`Subject`) VALUES ('$_POST[Pregunta]','$_POST[Respuesta]', '$_POST[Complejidad]', '$out1', '$_POST[Subject]')";
 
 if (!$mysqli->query($sql))
