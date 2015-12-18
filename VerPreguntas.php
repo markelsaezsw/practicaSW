@@ -10,6 +10,7 @@ echo'<table border = 1>
 
 while ($row = $Preguntas -> fetch_object()){
     echo '<tr>
+
     <td>'. $row -> Pregunta . '</td> 
     <td>'. $row -> Complejidad . '</td> 
     </tr>';

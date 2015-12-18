@@ -24,35 +24,32 @@
 		   href='estilos/smartphone.css' />
 		   
 		   
-		   
+	   
+<script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript"></script>
 <script>
-
-var XMLHttpRequest1 = new XMLHttpRequest();
-
-XMLHttpRequest1.onreadystatechange = function() {
-  if(XMLHttpRequest1.readyState == 4)
-  {
-    var contenedor = document.getElementById("preguntas");
-    contenedor.innerHTML = XMLHttpRequest1.responseText;
-  }
-}
 
 
 function verpreguntas() {
-  XMLHttpRequest1.open("GET", "preguntasusuario.php");
-  XMLHttpRequest1.send(null);
+jQuery.ajax({
+		url: "preguntasusuario.php", 
+		type: "POST",
+		success:function(data){$('#preguntas').html(data);} // #preguntas es el nombre del div
+	});
+
 }
 
 function modificarpreguntas() {
-  var P = document.getElementById("Pregunta").value;
+var P = document.getElementById("Pregunta").value;
   var R = document.getElementById("Respuesta").value;
   var S = document.getElementById("Subject").value;
   var C = document.getElementById("Complejidad").value;
-  XMLHttpRequest1.open("POST", "modificarpregunta.php", true);
-  XMLHttpRequest1.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-  XMLHttpRequest1.send("Pregunta="+P+"&Respuesta="+R+"&Subject="+S+"&Complejidad="+C);
+jQuery.ajax({
+		url: "modificarpregunta.php",
+		type: "POST",
+                data : { Pregunta : P, Respuesta : R, Subject : S, Complejidad : C},
+		success:function(data){$('#preguntas').html(data);}
+	});
 
-  
 }
 
 
@@ -61,7 +58,7 @@ function modificarpreguntas() {
 <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-		<span class="right"><a href="layout.html">Volver al inicio</a></span>
+		<span class="right"><a href="layout.php">Volver al inicio</a></span>
       		<span class="right" style="display:none;"><a href="/logout">Logout</a></span>
     </header>
     <section class="main" id="s1">
@@ -90,11 +87,9 @@ function modificarpreguntas() {
   <input type=button value="Insertar Nueva Pregunta" onclick="modificarpreguntas()"> <br>
    <a href="#" onClick="verpreguntas()">Ver Preguntas</a>
    <span class="right"><a href="logout.php">Logout</a></span>
-  <span class="right"><a href="layout.html">Pagina Inicio</a></span>
 
 
-<div id="modificado">
-      </div>
+
 <div id="preguntas">
       </div>
 
@@ -108,4 +103,4 @@ function modificarpreguntas() {
 	 
 </div>
 </body>
-</HTML>																				
+</HTML>																												

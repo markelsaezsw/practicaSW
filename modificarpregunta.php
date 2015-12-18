@@ -15,10 +15,10 @@ $sql = "INSERT INTO `u645169209_quiz`.`Preguntas` (`Pregunta`, `Respuesta`, `Com
 
 if (!$mysqli->query($sql))
 {
-echo " La pregunta no se pudo introducir en la base de datos. <br/>";
+echo "<br/> La pregunta no se pudo introducir en la base de datos. <br/>";
 die('Error: ' . $mysqli->error); 
 }
-echo "La pregunta se anadio correctamente a la base de datos. <br/>"; 
+echo "<br/>La pregunta se anadio correctamente a la base de datos. <br/>"; 
 
 if (file_exists('preguntas.xml')) {
 	

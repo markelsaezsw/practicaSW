@@ -1,31 +1,37 @@
 <?php
+session_start();
+
 
 $mysqli = new mysqli("mysql.hostinger.es", "u645169209_mark", "12345678", "u645169209_quiz");
 
-
-$resultado = "SELECT Correo, Password, Profesor FROM Usuarios WHERE Correo = '$_POST[Email]' AND Password = '$_POST[Contrasena]'";
-//session_start(); 
-//$_SESSION['myvar'] = $_POST[Email];
+$contra = sha1($_POST[Contrasena]);
+$resultado = "SELECT Correo, Password, Profesor FROM Usuarios WHERE Correo = '$_POST[Email]' AND Password = '$contra'";
 
 if($mysqli->query($resultado)->num_rows===0)
 {
-echo 'Usuario o contraseña incorrectos';
+if($_SESSION['Intentos'] == 2)
+{
+$pass=sha1("bloqueo123");
+$mysqli->query("UPDATE `u645169209_quiz`.`Usuarios` SET Password='$pass' WHERE Correo='$_POST[Email]'");
+echo "Tu cuenta ha sido bloqueada. ";
+echo "<p> <a href='contrasena.php'> Haz click aqui para verificar tu identidad. </a>";
+die();
+
+}
+if($_SESSION['Intentos'] == 1)
+{$_SESSION['Intentos'] = 2;}
+if($_SESSION['Intentos'] != 2)
+{$_SESSION['Intentos'] = 1;}
+
 header("Location: http://markelsaezsw.esy.es/SistemasWeb/login.html");
 }
 else{
-$prof = $mysqli->query("SELECT Profesor FROM Usuarios WHERE Correo = '$_POST[Email]' AND Password = '$_POST[Contrasena]'")->fetch_object()->Profesor;  
+$prof = $mysqli->query("SELECT Profesor FROM Usuarios WHERE Correo = '$_POST[Email]' AND Password = '$contra'")->fetch_object()->Profesor;  
 
-if($prof == 1)
-{
-header("Location: http://markelsaezsw.esy.es/SistemasWeb/revisar.php");
-}
-else if ($prof == 2)
-{
 
-header("Location: http://markelsaezsw.esy.es/SistemasWeb/gestionpreguntas.php");
+header("Location: http://markelsaezsw.esy.es/SistemasWeb/layout.php");
 
-}
-session_start();
+
 $_SESSION['Email'] = $_POST[Email];
 $_SESSION['Profesor'] = $prof;
 

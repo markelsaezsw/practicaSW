@@ -26,16 +26,26 @@ if (filter_var($_POST[Correo], FILTER_VALIDATE_REGEXP, array("options"=>array("r
 
 
 } else {
- $sql = $sql = "INSERT INTO `u645169209_quiz`.`Usuarios` (`NombreApellidos`, `Correo`, `Password`, `Telefono`, `Especialidad`, `Tecnologias`) VALUES ('$_POST[NombreyApellidos]', '$_POST[Correo]', '$_POST[Password]', '$_POST[Telefono]', '$_POST[Especialidad]', '$_POST[Interes]' )";
+$file = $_FILES["Foto"]["tmp_name"];
+print_r($_FILES);
+if(empty($file)) {
+echo('file empty');
+echo $file;
+         $contra = sha1($_POST[Password]);
+	$sql = $sql = "INSERT INTO `u645169209_quiz`.`Usuarios` (`NombreApellidos`, `Correo`, `Password`, `Telefono`, `Especialidad`, `Tecnologias`) VALUES ('$_POST[NombreyApellidos]', '$_POST[Correo]', '$contra', '$_POST[Telefono]', '$_POST[Especialidad]', '$_POST[Interes]')";
+} else {
+ $image = addslashes(file_get_contents($file));
+ $contra = sha1($_POST[Password]);
+ $sql = $sql = "INSERT INTO `u645169209_quiz`.`Usuarios` (`NombreApellidos`, `Correo`, `Password`, `Telefono`, `Especialidad`, `Tecnologias`, `Foto`) VALUES ('$_POST[NombreyApellidos]', '$_POST[Correo]', '$contra', '$_POST[Telefono]', '$_POST[Especialidad]', '$_POST[Interes]', '$image' )";
 }
-
+}
 if (!$mysqli->query($sql))
 {
 die('Error al introducir el usuario ' . $mysqli->error); 
 }
 
-echo "1 record added";
-echo "<p> <a href='VerUsuarios.php'> Ver usuarios </a>";
+echo "¡Se ha añadido un nuevo usuario! ";
+echo "<p> <a href='layout.php'> Volver al inicio </a>";
 $mysqli->close();
  
 ?>

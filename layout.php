@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	$_usuario = $_SESSION['Email'];
+        $profesor = $_SESSION['Profesor'];
+
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,29 +24,46 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
+<?php if($profesor == 0) { ?>
 		<span class="right"><a href="registro.html">Registrarse</a></span>
       		<span class="right"><a href="login.html">Login</a></span>
-      		<span class="right"><a href="logout.php">Logout</a></span>
+                <span class="right"><a href="contrasena.html">Olvidaste tu contrasena?</a></span>  <br>
+      		
+<?php } ?>
+<?php if($profesor != 0) { ?>
+<span class="right"><a href="logout.php">Logout</a></span>
+<?php } ?>
+
+
+                
 		<h2>Quiz: el juego de las preguntas</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='layout.html'>Inicio</a></spam>
-		<span><a href='VerPreguntas.php'>Preguntas</a></spam>
+		<span><a href='layout.php'>Inicio</a></spam>
+<?php if($profesor == 0) { ?>
+                 <span><a href='responderpreguntas.php'>Responder Preguntas</a></spam>
+<?php } ?>
+<?php if($profesor == 2) { ?>
+                  <span><a href='gestionpreguntas.php'>Gestionar preguntas</a></spam>
+<?php } ?>
+<?php if($profesor == 1) { ?>
+                   <span><a href='revisar.php'>Revisar preguntas y usuarios</a></spam>
+<?php } ?>
 		<span><a href='creditos.html'>Creditos</a></spam>
 		
 	</nav>
     <section class="main" id="s1">
     
 	<div>
-	Aqui se visualizan las preguntas y los creditos ...
+	¡Haz click en un enlace para comenzar!
 	</div>
     </section>
 	<footer class='main' id='f1'>
 		<p><a href="http://es.wikipedia.org/wiki/Quiz" target="_blank">Que es un Quiz?</a></p> <br>
-		<a href='https://github.com/MJimenez035'>Link GITHUB Maria</a> <br>
 		<a href='https://github.com/markelsaezsw'>Link GITHUB Markel</a>
 	</footer>
 	 
 </div>
 </body>
 </html>
+
